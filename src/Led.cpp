@@ -10,6 +10,7 @@
   - 1.0.3 => Add new methods : getLedPinNumber(), getLedPinState()
   			 getLedPullType(), printLedInfo() useful for debugging
   - 1.0.4 => Improve documentation
+  - 1.1.0 => Add examples and fix some mistakes
 */
 
 #include "Led.h"

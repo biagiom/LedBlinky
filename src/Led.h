@@ -1,5 +1,5 @@
 /*
-  Led.cpp
+  Led.h
 
   Copyright (c) 2016, Biagio Montaruli
 
@@ -9,6 +9,8 @@
   - 1.0.2 => Add documentation
   - 1.0.3 => Add new methods : getLedPinNumber(), getLedPinState()
   			 getLedPullType(), printLedInfo() useful for debugging
+  - 1.0.4 => Improve documentation
+  - 1.1.0 => Add examples and fix some mistakes
 */
 
 #ifndef LED_H
