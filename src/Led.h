@@ -11,6 +11,7 @@
   			 getLedPullType(), printLedInfo() useful for debugging
   - 1.0.4 => Improve documentation
   - 1.1.0 => Add examples and fix some mistakes
+  - 1.1.1 => Fix typing mistakes in README.adoc and library.properties
 */
 
 #ifndef LED_H
