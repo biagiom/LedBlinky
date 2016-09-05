@@ -1,6 +1,6 @@
 = Led Library for Arduino/Genuno boards =
 
-This library allows an Arduino/Genuino board to use the builit led or
+This library allows an Arduino/Genuino board to use the built-in led or
 one or more leds attached to Arduino pins
 
 == License ==
