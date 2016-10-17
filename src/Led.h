@@ -36,6 +36,7 @@
 	#define	isAnalog(pin)	((pin >= A0) && (pin <= A5) ? true : false)
 #endif
 
+/* Uncomment the next line of code to enable serial debugging */
 // #define SERIAL_DEBUG
 
 #if defined(SERIAL_DEBUG)
