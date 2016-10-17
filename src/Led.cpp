@@ -24,9 +24,9 @@
  *  @param pin : the led pin
  *  @param initState : set the initial state of the led
  *                     initState can be ON or OFF
- *	@param pull : the configuration of the led :
- *                A led can be connected to a digital or analog pin using
- *                a pull-down or a pull-up resistor
+ *  @param pull : the configuration of the led :
+ *                a led can be connected to a digital or analog pin using a
+ *                pull-down or a pull-up resistor
  *
  *  Some notes about Led configurations :
  *  > Led is ON if  : 1) has pull-down resistor and pin is HIGH
