@@ -24,7 +24,7 @@ const int ledPin = 4;
 Led myLed(ledPin, ON, PULL_UP);
  
 void setup() {
-  // enable Serial comunication 
+  // enable Serial communication 
   // and to print info about led initialization.
   // IMPORTANT NOTE : 
   // Remember also to uncomment the line // #define SERIAL_DEBUG

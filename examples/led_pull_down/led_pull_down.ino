@@ -24,7 +24,7 @@ const int ledPin = 4;
 Led myLed(ledPin, OFF, PULL_DOWN);
 
 void setup() {
-  // enable Serial comunication 
+  // enable Serial communication 
   // and to print info about led initialization.
   // IMPORTANT NOTE : 
   // Remember also to uncomment the line // #define SERIAL_DEBUG
@@ -34,8 +34,8 @@ void setup() {
   // initialize the Led library
   myLed.begin();
   // print led info :
-  // this function prints led state, led brightness and the state
-  // of the led pin
+  // the printLedInfo() method prints led state, led brightness 
+  // and the state of the led pin
   myLed.printLedInfo();
 }
 

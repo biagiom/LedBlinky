@@ -17,7 +17,7 @@ const int ledPin = 9;
 Led myLed(ledPin, OFF);
 
 void setup() {
-  /* Uncomment the following lines to enable serial comunication 
+  /* Uncomment the following lines to enable serial communication 
      and to print info about led initialization.
      IMPORTANT NOTE : 
      Remember also to uncomment the line // #define SERIAL_DEBUG
@@ -26,7 +26,7 @@ void setup() {
   // Serial.begin(9600);
   // while(!Serial) ;
   myLed.begin();
-  /* Uncomment the following line to enable serial comunication 
+  /* Uncomment the following line to enable serial communication 
      and to print info about led initialization.
    */
   // myLed.printLedInfo();

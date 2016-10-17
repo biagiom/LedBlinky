@@ -1,7 +1,7 @@
 /*
   blink
   Use the Led library to blink a led connected to the digital PWM
-  pin 9. You can use a pull-up resistor or a pull -down resistor
+  pin 9. You can use a pull-up resistor or a pull-down resistor
   to attach the led to pin 9. The brightness of the led is controlled
   by a pot trimmer attached to analog pin A0
 
