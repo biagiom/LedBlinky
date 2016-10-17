@@ -19,20 +19,20 @@
 /**************************************** CONSTRUCTORS *******************************************/
 
 /** Led() : Constructor of Led class
- *	@brief Constructor to initialize the data members of Led class
- *	@param pin : the led pin
- *	@param initState : set the initial state of the led
- *					   initState can be ON or OFF
+ *  @brief Constructor to initialize the data members of Led class
+ *  @param pin : the led pin
+ *  @param initState : set the initial state of the led
+ *                     initState can be ON or OFF
  *	@param pull : the configuration of the led :
- *				  A led can be connected to a digital or analog pin using
- *				  a pull-down or a pull-up resistor
+ *                A led can be connected to a digital or analog pin using
+ *                a pull-down or a pull-up resistor
  *
- *	Some notes about Led configurations :
- *	> Led is ON if  : 1) has pull-down resistor and pin is HIGH
- *				  	  2) has pull-up resistor and pin is LOW
+ *  Some notes about Led configurations :
+ *  > Led is ON if  : 1) has pull-down resistor and pin is HIGH
+ *                    2) has pull-up resistor and pin is LOW
  *
- *	> Led is OFF if : 1) has pull-down resistor and pin is LOW
- *					  2) has pull-up resistor and pin is HIGH
+ *  > Led is OFF if : 1) has pull-down resistor and pin is LOW
+ *                    2) has pull-up resistor and pin is HIGH
  */
 Led::Led(uint8_t pin, LedState initState, PullType pull) {
 	bool checkPin = ((isDigital(pin) || isAnalog(pin)) && ((initState == ON) || (initState == OFF)));
@@ -77,13 +77,12 @@ Led::Led(uint8_t pin, LedState initState, PullType pull) {
 }
 
 /** Led() : Constructor (Overloading) of Led class
- *	@brief Constructor to initialize the data members of Led class
- *		   This constructor requires only the led pin and the initial state used
- *		   to initialize the led and it check if the led is attached to its pin
- *		   with a pull-up or a pull-down resistor
- *	@param pin : the led pin
- *	@param initState : set the initial state of the led,
- *					   initState can be ON or OFF
+ *  @brief Constructor to initialize the data members of Led class
+ *  @param pin : the led pin
+ *  @param initState : set the initial state of the led, initState can be ON or OFF
+ *  @note This constructor requires only the led pin and the initial state used
+ *        to initialize the led and it check if the led is attached to its pin
+ *        with a pull-up or a pull-down resistor
  */
 Led::Led(uint8_t pin, LedState initState) {
 	// check if the led pin is a valid digital pin or a valid analog pin
@@ -133,8 +132,8 @@ Led::Led(uint8_t pin, LedState initState) {
 				_state = initState;
 			}
 		}
-			
-	    // check if the led pin is also a PWM pin in order to set the brightness of the led
+		
+		// check if the led pin is also a PWM pin in order to set the brightness of the led
 		_pinPWM = digitalPinHasPWM(pin);
 		// set the initial brightness (255 if the led is ON or 0 if the led is OFF)
 		_brightness = checkBrightness(_state);
@@ -155,11 +154,11 @@ Led::Led(uint8_t pin, LedState initState) {
 /**************************************** PRIVATE METHODS ****************************************/
 
 /** checkInit()
- *	@brief Private method that checks if the pin and the initial state of the led 
- *		   have been set correctly
- *	@param void
- *	@return true if pin and initial state have been set up correctly,
- *			otherwise this method returns false 
+ *  @brief Private method that checks if the pin and the initial state of the led 
+ *         have been set correctly
+ *  @param void
+ *  @return true if pin and initial state have been set up correctly,
+ *          otherwise this method returns false 
  */
 inline bool Led::checkInit(void) const {
 	if((_pin != WRONG_PIN) && (_state != WRONG_STATE))
@@ -169,10 +168,10 @@ inline bool Led::checkInit(void) const {
 }
 
 /** checkBrightness()
- *	@brief Private method that sets up the initial value of led brightness during
- *		   the Led constructor call, according to the initial led state
- *	@param s : initial led state
- *	@return the brightness initial value 
+ *  @brief Private method that sets up the initial value of led brightness during
+ *         the Led constructor call, according to the initial led state
+ *  @param s : initial led state
+ *  @return the brightness initial value 
  */
 inline uint8_t Led::checkBrightness(LedState s) const {
 	if(s == ON)
@@ -182,8 +181,8 @@ inline uint8_t Led::checkBrightness(LedState s) const {
 }
 
 /** setState()
- *	@brief Private method used to set the led state
- *	@param state : used to set up the current led state
+ *  @brief Private method used to set the led state
+ *  @param state : used to set up the current led state
  */
 void Led::setState(uint8_t state) {
 	_state = (LedState) state;
@@ -220,8 +219,8 @@ void Led::setState(uint8_t state) {
 #if defined(SERIAL_DEBUG)
 
 /** printLedState()
- *	@brief Public method that prints led state
- *	@param void 
+ *  @brief Public method that prints led state
+ *  @param void 
  */
 inline void Led::printLedState(void) const {
 	SERIAL.print("Led connected to pin ");
@@ -234,8 +233,8 @@ inline void Led::printLedState(void) const {
 }
 
 /** printLedPinState()
- *	@brief Public method that prints the led pin state
- *	@param void 
+ *  @brief Public method that prints the led pin state
+ *  @param void 
  */
 inline void Led::printLedPinState(void) const {
 	SERIAL.print("Led pin ");
@@ -248,8 +247,8 @@ inline void Led::printLedPinState(void) const {
 }
 
 /** printLedBrightness()
- *	@brief Public method that prints led brightness
- *	@param void 
+ *  @brief Public method that prints led brightness
+ *  @param void 
  */
 inline void Led::printLedBrightness(void) const {
 	SERIAL.print("Led brightness is ");
@@ -259,8 +258,8 @@ inline void Led::printLedBrightness(void) const {
 /**************************************** PUBLIC METHODS ****************************************/
 
 /** printLedInfo()
- *	@brief Public method that prints all led info
- *	@param void 
+ *  @brief Public method that prints all led info
+ *  @param void 
  */
 void Led::printLedInfo(void) const {
 	printLedPinState();
@@ -271,9 +270,9 @@ void Led::printLedInfo(void) const {
 #endif
 
 /** begin()
- *	@brief Public method that initializes the led
- *		   Usually this method is called in setup() function
- *	@param void
+ *  @brief Public method that initializes the led.
+ *         Usually this method is called in setup() function
+ *  @param void
  */
 void Led::begin(void) const {
 	if(checkInit()) {
@@ -291,8 +290,8 @@ void Led::begin(void) const {
 }
 
 /** end()
- *	@brief Public method that disables the led pin
- *	@param void
+ *  @brief Public method that disables the led pin
+ *  @param void
  */
 void Led::end(void) const {
 	if(checkInit()) {
@@ -307,36 +306,36 @@ void Led::end(void) const {
 }
 
 /** on()
- *	@brief Public method that turns the led ON 
- *	@param void
+ *  @brief Public method that turns the led ON 
+ *  @param void
  */
 void Led::on(void) {
 	setState(ON);
 }
 
 /** off()
- *	@brief Public method that turns the led OFF
- *	@param void
+ *  @brief Public method that turns the led OFF
+ *  @param void
  */
 void Led::off(void) {
 	setState(OFF);
 }
 
 /** toggle()
- *	@brief Public method that change the led state, i.e
- *		   if the led is ON, turn the led OFF
- *		   else if the led is OFF, turn the led ON
- *	@param void
+ *  @brief Public method that change the led state, i.e
+ *         if the led is ON, turn the led OFF
+ *         else if the led is OFF, turn the led ON
+ *  @param void
  */
 void Led::toggle(void) {
 	setState(1-_state);
 }
 
 /** setBrightness()
- *	@brief Public method that change the led brightness if the led pin
- *		   is a PWM pin, otherwise it turns the led ON or OFF according
- *		   to the value of brightness
- *	@param brightness used to set the led brightness
+ *  @brief Public method that change the led brightness if the led pin
+ *         is a PWM pin, otherwise it turns the led ON or OFF according
+ *         to the value of brightness
+ *  @param brightness used to set the led brightness
  */
 void Led::setBrightness(uint8_t brightness) {
 	if(checkInit()) {
@@ -380,13 +379,13 @@ void Led::setBrightness(uint8_t brightness) {
 }
 
 /** blink()
- *	@brief Public method that turns the led ON setting the led brightness with the brightness
- *		   parameter, waits for a delay time specified by onDelay, then turn the led OFF and
- *		   finally waits for a delay time specified by offDelay.
- *		   This method is used to blink a led
- *	@param onDelay : the amount of time the led is ON
- *	@param offDelay : the amount of time led is OFF
- *	@param brightness : used to set up the led brightness
+ *  @brief Public method that turns the led ON setting the led brightness with the brightness
+ *         parameter, waits for a delay time specified by onDelay, then turn the led OFF and
+ *         finally waits for a delay time specified by offDelay.
+ *         This method is used to blink a led
+ *  @param onDelay : the amount of time the led is ON
+ *  @param offDelay : the amount of time led is OFF
+ *  @param brightness : used to set up the led brightness
  */
 void Led::blink(long onDelay, long offDelay, uint8_t brightness) {
 	setBrightness(brightness);
@@ -396,9 +395,9 @@ void Led::blink(long onDelay, long offDelay, uint8_t brightness) {
 }
 
 /** getLedState()
- *	@brief Public method that returns the led state
- *	@param void
- *	@return ON or OFF according to the led state
+ *  @brief Public method that returns the led state
+ *  @param void
+ *  @return ON or OFF according to the led state
  */
 bool Led::getState(void) const {
 	if(_state)
@@ -408,38 +407,38 @@ bool Led::getState(void) const {
 }
 
 /** getBrightness()
- *	@brief Public method that returns the led brightness 
- *	@param void
- *	@return the led brightness
+ *  @brief Public method that returns the led brightness 
+ *  @param void
+ *  @return the led brightness
  */
 uint8_t Led::getBrightness(void) const {
 	return _brightness;
 }
 
 /** getLedPinNumber()
- *	@brief Public method that returns the led pin number
- *	@param void
- *	@return the pin number to which the led is attached
+ *  @brief Public method that returns the led pin number
+ *  @param void
+ *  @return the pin number to which the led is attached
  */
 uint8_t Led::getLedPinNumber(void) const {
 	return _pin;
 }
 
 /** getLedPinState()
- *	@brief Public method that returns the state of the pin
- *		   to which the led is attached 
- *	@param void
- *	@return HIGH (1) or LOW (0) according to the pin state 
+ *  @brief Public method that returns the state of the pin
+ *         to which the led is attached 
+ *  @param void
+ *  @return HIGH (1) or LOW (0) according to the pin state 
  */
 bool Led::getLedPinState(void) const {
 	return _pinState;
 }
 
 /** getLedPullType()
- *	@brief Public method used to know the led configuration
- *	@param void
- *	@return PULL_UP if the led uses a pull-up resistor, else
- *			PULL_DOWN if the led uses a pull-down resistor 
+ *  @brief Public method used to know the led configuration
+ *  @param void
+ *  @return PULL_UP if the led uses a pull-up resistor, else
+ *          PULL_DOWN if the led uses a pull-down resistor 
  */
 PullType Led::getLedPullType(void) const {
 	return _ledPullType;
