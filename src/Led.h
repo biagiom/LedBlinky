@@ -40,7 +40,7 @@
 // #define SERIAL_DEBUG
 
 #if defined(SERIAL_DEBUG)
-#define SERIAL Serial
+#define SERIAL_PORT Serial
 #endif
 
 #define WRONG_PIN 0

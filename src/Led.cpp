@@ -39,22 +39,13 @@ Led::Led(uint8_t pin, LedState initState, PullType pull) {
 	if(checkPin) {
 		_pin = pin;
 		_pinPWM = digitalPinHasPWM(pin);
-	
-		if(initState == ON) {
+		
+		if(initState == ON || initState == OFF) {
 			if(pull == PULL_DOWN)
 				_pinState = HIGH;
 			else
 				_pinState = LOW;
 		
-			_state = initState;
-			_brightness = checkBrightness(_state);
-		}
-		else if(initState == OFF) {
-			if(pull == PULL_DOWN)
-				_pinState = LOW;
-			else
-				_pinState = HIGH;
-			
 			_state = initState;
 			_brightness = checkBrightness(_state);
 		}
@@ -223,13 +214,13 @@ void Led::setState(uint8_t state) {
  *  @param void 
  */
 inline void Led::printLedState(void) const {
-	SERIAL.print("Led connected to pin ");
-	SERIAL.print(_pin);
-	SERIAL.print(" is ");
+	SERIAL_PORT.print("Led connected to pin ");
+	SERIAL_PORT.print(_pin);
+	SERIAL_PORT.print(" is ");
 	if(_state)
-		SERIAL.println("ON");
+		SERIAL_PORT.println("ON");
 	else
-		SERIAL.println("OFF");
+		SERIAL_PORT.println("OFF");
 }
 
 /** printLedPinState()
@@ -237,13 +228,13 @@ inline void Led::printLedState(void) const {
  *  @param void 
  */
 inline void Led::printLedPinState(void) const {
-	SERIAL.print("Led pin ");
-	SERIAL.print(_pin);
-	SERIAL.print(" is ");
+	SERIAL_PORT.print("Led pin ");
+	SERIAL_PORT.print(_pin);
+	SERIAL_PORT.print(" is ");
 	if(_pinState)
-		SERIAL.println("HIGH");
+		SERIAL_PORT.println("HIGH");
 	else
-		SERIAL.println("LOW");
+		SERIAL_PORT.println("LOW");
 }
 
 /** printLedBrightness()
@@ -251,8 +242,8 @@ inline void Led::printLedPinState(void) const {
  *  @param void 
  */
 inline void Led::printLedBrightness(void) const {
-	SERIAL.print("Led brightness is ");
-	SERIAL.println(_brightness);
+	SERIAL_PORT.print("Led brightness is ");
+	SERIAL_PORT.println(_brightness);
 }
 
 /**************************************** PUBLIC METHODS ****************************************/
@@ -282,9 +273,9 @@ void Led::begin(void) const {
 #if defined(SERIAL_DEBUG)
 	else {
 		if(_pin == WRONG_PIN)
-			SERIAL.println("Wrong pin number !");
+			SERIAL_PORT.println("Wrong pin number !");
 		if(_state == WRONG_STATE)
-			SERIAL.println("Wrong led state !");
+			SERIAL_PORT.println("Wrong led state !");
 	}
 #endif
 }
@@ -298,9 +289,9 @@ void Led::end(void) const {
 		digitalWrite(_pin, LOW);
 		pinMode(_pin, INPUT);
 #if defined(SERIAL_DEBUG)
-		SERIAL.println("Led pin disabled");
-		SERIAL.println("End Serial debug for Led library ...");
-		SERIAL.end();
+		SERIAL_PORT.println("Led pin disabled");
+		SERIAL_PORT.println("End Serial debug for Led library ...");
+		SERIAL_PORT.end();
 #endif
 	}
 }
