@@ -13,6 +13,7 @@
   - 1.1.0 => Add examples and fix some mistakes
   - 1.1.1 => Fix typing mistakes in README.adoc and library.properties
   - 1.2.0 => Update Led constructor, documentation and Serial debugging
+  - 1.3.0 => Change library name to LedBlinky, related files and class
 */
 
 #include "LedBlinky.h"
