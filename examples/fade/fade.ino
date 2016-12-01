@@ -1,27 +1,27 @@
 /*
   Fade
-  Use the Led library to change the led brightness
+  Use the LedBlinky library to change the led brightness
   
   created 2 Sept 2016
   by Biagio Montaruli
 
   This example code is in the public domain.
  */
-#include <Led.h>
+#include <LedBlinky.h>
 
 const int ledPin = 9;
 
-// create a new instance of Led library :
+// create a new instance of LedBlinky library :
 // ledPin is the number of the led pin
 // OFF is the initial state of the led
-Led myLed(ledPin, OFF);
+LedBlinky myLed(ledPin, OFF);
 
 void setup() {
   /* Uncomment the following lines to enable serial communication 
      and to print info about led initialization.
      IMPORTANT NOTE : 
      Remember also to uncomment the line // #define SERIAL_DEBUG
-     in the Led.h header file to print debug info in the Serial Monitor
+     in the LedBlinky.h header file to print debug info in the Serial Monitor
    */
   // Serial.begin(9600);
   // while(!Serial) ;

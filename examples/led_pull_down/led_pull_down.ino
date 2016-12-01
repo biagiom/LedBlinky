@@ -1,6 +1,6 @@
 /*
   led_pull_down
-  Use the Led library to initialize a pull-down led.
+  Use the LedBlinky library to initialize a pull-down led.
   This is a bare-minimum skecth that show you how to use a led
   connected to digital pin using a pull-down resistor.
   GND ------------/\/\/\/----------- <| ------- <==
@@ -13,25 +13,25 @@
 
   This example code is in the public domain.
  */
-#include <Led.h>
+#include <LedBlinky.h>
 
 const int ledPin = 4;
 
-// create a new instance of Led library :
+// create a new instance of LedBlinky library :
 // ledPin is the number of the led pin
 // OFF is the initial state of the led
 // PULL_DOWN is the type of resistor used to connect the led
-Led myLed(ledPin, OFF, PULL_DOWN);
+LedBlinky myLed(ledPin, OFF, PULL_DOWN);
 
 void setup() {
   // enable Serial communication 
   // and to print info about led initialization.
   // IMPORTANT NOTE : 
   // Remember also to uncomment the line // #define SERIAL_DEBUG
-  // in the Led.h header file to print debug info in the Serial Monitor
+  // in the LedBlinky.h header file to print debug info in the Serial Monitor
   Serial.begin(9600);
   while(!Serial) ;
-  // initialize the Led library
+  // initialize the LedBlinky library
   myLed.begin();
   // print led info :
   // the printLedInfo() method prints led state, led brightness 

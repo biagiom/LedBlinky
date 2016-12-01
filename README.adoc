@@ -1,7 +1,6 @@
-= Led Library for Arduino/Genuno boards =
+= LedBlinky library for Arduino/Genuino boards =
 
-This library allows an Arduino/Genuino board to use the built-in led or
-one or more leds attached to Arduino pins
+This library allows an Arduino/Genuino board to control leds attached to Arduino pins
 
 == License ==
 

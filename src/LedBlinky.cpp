@@ -1,5 +1,5 @@
 /*
-  Led.cpp
+  LedBlinky.cpp
 
   Copyright (c) 2016, Biagio Montaruli
 
@@ -15,12 +15,12 @@
   - 1.2.0 => Update Led constructor, documentation and Serial debugging
 */
 
-#include "Led.h"
+#include "LedBlinky.h"
 
 /**************************************** CONSTRUCTORS *******************************************/
 
-/** Led() : Constructor of Led class
- *  @brief Constructor to initialize the data members of Led class
+/** LedBlinky() : Constructor of LedBlinky class
+ *  @brief Constructor to initialize the data members of LedBlinky class
  *  @param pin : the led pin
  *  @param initState : set the initial state of the led
  *                     initState can be ON or OFF
@@ -28,14 +28,14 @@
  *                a led can be connected to a digital or analog pin using a
  *                pull-down or a pull-up resistor
  *
- *  Some notes about Led configurations :
+ *  Some notes about a led's configurations :
  *  > Led is ON if  : 1) has pull-down resistor and pin is HIGH
  *                    2) has pull-up resistor and pin is LOW
  *
  *  > Led is OFF if : 1) has pull-down resistor and pin is LOW
  *                    2) has pull-up resistor and pin is HIGH
  */
-Led::Led(uint8_t pin, LedState initState, PullType pull) {
+LedBlinky::LedBlinky(uint8_t pin, LedState initState, PullType pull) {
 	bool checkPin = ((isDigital(pin) || isAnalog(pin)) && ((initState == ON) || (initState == OFF)));
 	if(checkPin) {
 		_pin = pin;
@@ -68,15 +68,15 @@ Led::Led(uint8_t pin, LedState initState, PullType pull) {
 	}
 }
 
-/** Led() : Constructor (Overloading) of Led class
- *  @brief Constructor to initialize the data members of Led class
+/** LedBlinky() : Constructor (Overloading) of LedBlinky class
+ *  @brief Constructor to initialize the data members of LedBlinky class
  *  @param pin : the led pin
  *  @param initState : set the initial state of the led, initState can be ON or OFF
  *  @note This constructor requires only the led pin and the initial state used
  *        to initialize the led and it check if the led is attached to its pin
  *        with a pull-up or a pull-down resistor
  */
-Led::Led(uint8_t pin, LedState initState) {
+LedBlinky::LedBlinky(uint8_t pin, LedState initState) {
 	// check if the led pin is a valid digital pin or a valid analog pin
 	bool checkPin = (isDigital(pin) || isAnalog(pin));
 	// external resistor used to connect the led to an Arduino pin
@@ -152,7 +152,7 @@ Led::Led(uint8_t pin, LedState initState) {
  *  @return true if pin and initial state have been set up correctly,
  *          otherwise this method returns false 
  */
-inline bool Led::checkInit(void) const {
+inline bool LedBlinky::checkInit(void) const {
 	if((_pin != WRONG_PIN) && (_state != WRONG_STATE))
 		return true;
 	else
@@ -161,11 +161,11 @@ inline bool Led::checkInit(void) const {
 
 /** checkBrightness()
  *  @brief Private method that sets up the initial value of led brightness during
- *         the Led constructor call, according to the initial led state
+ *         the LedBlinky constructor call, according to the initial led state
  *  @param s : initial led state
  *  @return the brightness initial value 
  */
-inline uint8_t Led::checkBrightness(LedState s) const {
+inline uint8_t LedBlinky::checkBrightness(LedState s) const {
 	if(s == ON)
 		return 255;
 	else
@@ -176,7 +176,7 @@ inline uint8_t Led::checkBrightness(LedState s) const {
  *  @brief Private method used to set the led state
  *  @param state : used to set up the current led state
  */
-void Led::setState(uint8_t state) {
+void LedBlinky::setState(uint8_t state) {
 	_state = (LedState) state;
 	if(checkInit()) {
 		if(_ledPullType == PULL_DOWN) {
@@ -214,7 +214,7 @@ void Led::setState(uint8_t state) {
  *  @brief Public method that prints led state
  *  @param void 
  */
-inline void Led::printLedState(void) const {
+inline void LedBlinky::printLedState(void) const {
 	SERIAL_PORT.print("Led connected to pin ");
 	SERIAL_PORT.print(_pin);
 	SERIAL_PORT.print(" is ");
@@ -228,7 +228,7 @@ inline void Led::printLedState(void) const {
  *  @brief Public method that prints the led pin state
  *  @param void 
  */
-inline void Led::printLedPinState(void) const {
+inline void LedBlinky::printLedPinState(void) const {
 	SERIAL_PORT.print("Led pin ");
 	SERIAL_PORT.print(_pin);
 	SERIAL_PORT.print(" is ");
@@ -242,7 +242,7 @@ inline void Led::printLedPinState(void) const {
  *  @brief Public method that prints led brightness
  *  @param void 
  */
-inline void Led::printLedBrightness(void) const {
+inline void LedBlinky::printLedBrightness(void) const {
 	SERIAL_PORT.print("Led brightness is ");
 	SERIAL_PORT.println(_brightness);
 }
@@ -253,7 +253,7 @@ inline void Led::printLedBrightness(void) const {
  *  @brief Public method that prints all led info
  *  @param void 
  */
-void Led::printLedInfo(void) const {
+void LedBlinky::printLedInfo(void) const {
 	printLedPinState();
 	printLedState();
 	printLedBrightness();
@@ -266,7 +266,7 @@ void Led::printLedInfo(void) const {
  *         Usually this method is called in setup() function
  *  @param void
  */
-void Led::begin(void) const {
+void LedBlinky::begin(void) const {
 	if(checkInit()) {
 		pinMode(_pin, OUTPUT);
 		digitalWrite(_pin, _pinState);
@@ -285,7 +285,7 @@ void Led::begin(void) const {
  *  @brief Public method that disables the led pin
  *  @param void
  */
-void Led::end(void) const {
+void LedBlinky::end(void) const {
 	if(checkInit()) {
 		digitalWrite(_pin, LOW);
 		pinMode(_pin, INPUT);
@@ -301,7 +301,7 @@ void Led::end(void) const {
  *  @brief Public method that turns the led ON 
  *  @param void
  */
-void Led::on(void) {
+void LedBlinky::on(void) {
 	setState(ON);
 }
 
@@ -309,7 +309,7 @@ void Led::on(void) {
  *  @brief Public method that turns the led OFF
  *  @param void
  */
-void Led::off(void) {
+void LedBlinky::off(void) {
 	setState(OFF);
 }
 
@@ -319,7 +319,7 @@ void Led::off(void) {
  *         else if the led is OFF, turn the led ON
  *  @param void
  */
-void Led::toggle(void) {
+void LedBlinky::toggle(void) {
 	setState(1-_state);
 }
 
@@ -329,7 +329,7 @@ void Led::toggle(void) {
  *         to the value of brightness
  *  @param brightness used to set the led brightness
  */
-void Led::setBrightness(uint8_t brightness) {
+void LedBlinky::setBrightness(uint8_t brightness) {
 	if(checkInit()) {
 		if(_pinPWM) {
 			_brightness = brightness;
@@ -379,7 +379,7 @@ void Led::setBrightness(uint8_t brightness) {
  *  @param offDelay : the amount of time led is OFF
  *  @param brightness : used to set up the led brightness
  */
-void Led::blink(long onDelay, long offDelay, uint8_t brightness) {
+void LedBlinky::blink(long onDelay, long offDelay, uint8_t brightness) {
 	setBrightness(brightness);
 	delay(onDelay);
 	setBrightness(0);
@@ -391,7 +391,7 @@ void Led::blink(long onDelay, long offDelay, uint8_t brightness) {
  *  @param void
  *  @return ON or OFF according to the led state
  */
-bool Led::getState(void) const {
+bool LedBlinky::getState(void) const {
 	if(_state)
 		return ON;
 	else
@@ -403,7 +403,7 @@ bool Led::getState(void) const {
  *  @param void
  *  @return the led brightness
  */
-uint8_t Led::getBrightness(void) const {
+uint8_t LedBlinky::getBrightness(void) const {
 	return _brightness;
 }
 
@@ -412,7 +412,7 @@ uint8_t Led::getBrightness(void) const {
  *  @param void
  *  @return the pin number to which the led is attached
  */
-uint8_t Led::getLedPinNumber(void) const {
+uint8_t LedBlinky::getLedPinNumber(void) const {
 	return _pin;
 }
 
@@ -422,7 +422,7 @@ uint8_t Led::getLedPinNumber(void) const {
  *  @param void
  *  @return HIGH (1) or LOW (0) according to the pin state 
  */
-bool Led::getLedPinState(void) const {
+bool LedBlinky::getLedPinState(void) const {
 	return _pinState;
 }
 
@@ -432,6 +432,6 @@ bool Led::getLedPinState(void) const {
  *  @return PULL_UP if the led uses a pull-up resistor, else
  *          PULL_DOWN if the led uses a pull-down resistor 
  */
-PullType Led::getLedPullType(void) const {
+PullType LedBlinky::getLedPullType(void) const {
 	return _ledPullType;
 }

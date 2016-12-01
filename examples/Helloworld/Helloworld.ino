@@ -1,17 +1,17 @@
 /*
   Helloworld
-  Use the Led library to blink a led attached to digital pin 4
+  Use the LedBlinky library to blink a led attached to digital pin 4
   
   created 2 Sept 2016
   by Biagio Montaruli
 
   This example code is in the public domain.
  */
-#include <Led.h>
+#include <LedBlinky.h>
 
 const int ledPin = 4;
 
-Led myLed(ledPin, OFF);
+LedBlinky myLed(ledPin, OFF);
 
 void setup() {
   // enable Serial communication
@@ -21,7 +21,7 @@ void setup() {
   // in the Led.h header file to print debug info in the Serial Monitor
   Serial.begin(9600);
   while(!Serial) ;
-  // initialize the Led library
+  // initialize the LedBlinky library
   myLed.begin();
 }
 

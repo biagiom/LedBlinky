@@ -1,12 +1,12 @@
 #######################################
-# Syntax Coloring Map For Led
+# Syntax Coloring Map For LedBlinky
 #######################################
 
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
 
-Led	KEYWORD1
+LedBlinky	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

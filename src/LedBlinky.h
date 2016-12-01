@@ -1,5 +1,5 @@
 /*
-  Led.h
+  LedBlinky.h
 
   Copyright (c) 2016, Biagio Montaruli
 
@@ -15,15 +15,14 @@
   - 1.2.0 => Update Led constructor, documentation and Serial debugging
 */
 
-#ifndef LED_H
-#define LED_H
+#ifndef LEDBLINKY_H
+#define LEDBLINKY_H
 
 #if ARDUINO >= 100
  #include "Arduino.h"
 #else
  #include "WProgram.h"
 #endif
-
 
 // allow the use of digital pins 2 - 12 for all Arduino boards
 // pin 0 and 1 are used for Serial comunication so don't use it
@@ -57,7 +56,7 @@ typedef enum {
 	PULL_UP = 1
 } PullType;
 
-class Led {
+class LedBlinky {
 
 private :
 	uint8_t _pin;
@@ -77,8 +76,8 @@ private :
 #endif
 	
 public :
-	Led(uint8_t pin, LedState initState, PullType pull);
-	Led(uint8_t pin, LedState initState);
+	LedBlinky(uint8_t pin, LedState initState, PullType pull);
+	LedBlinky(uint8_t pin, LedState initState);
 	void begin(void) const;
 	void end(void) const;
 	void on(void);
