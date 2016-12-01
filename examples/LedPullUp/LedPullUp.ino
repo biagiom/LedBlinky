@@ -1,8 +1,8 @@
 /*
-  led_pull_up
-  Use the LedBlinky library to initialize a pull-up led.
-  This is a bare-minimum skecth that show you how to use a led
-  connected to a digital pin using a pull-up resistor.
+  LedPullUp.
+  This is a bare-minimum skecth that show you how to use 
+  the LedBlinky library to control a led connected to 
+  the digital pin 4 using a pull-up resistor.
     VCC ------------/\/\/\/----------- |> -----------<==
   5V/3.3V        pull-up resistor      LED      led pin
   To turn the led ON, the led pin must be set up as LOW, instead

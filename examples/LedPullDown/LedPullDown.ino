@@ -1,8 +1,8 @@
 /*
-  led_pull_down
-  Use the LedBlinky library to initialize a pull-down led.
-  This is a bare-minimum skecth that show you how to use a led
-  connected to digital pin using a pull-down resistor.
+  LedPullDown
+  This is a bare-minimum skecth that show you how to use 
+  the LedBlinky library to control a led connected to the 
+  digital pin 4 using a pull-down resistor.
   GND ------------/\/\/\/----------- <| ------- <==
   0V        pull-down resistor       LED      led pin
   To turn the led ON, the led pin must be set up as HIGH, instead
@@ -36,7 +36,9 @@ void setup() {
   // print led info :
   // the printLedInfo() method prints led state, led brightness 
   // and the state of the led pin
+  #ifdef SERIAL_DEBUG
   myLed.printLedInfo();
+  #endif
 }
 
 void loop() {
